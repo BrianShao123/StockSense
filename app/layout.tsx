@@ -1,11 +1,13 @@
 import './globals.css';
-
 import { Analytics } from '@vercel/analytics/react';
+import { AuthProvider } from '@/components/context/AuthContext';
 
 export const metadata = {
-  title: 'Next.js App Router + NextAuth + Tailwind CSS',
-  description:
-    'A user admin dashboard configured with Next.js, Postgres, NextAuth, Tailwind CSS, TypeScript, and Prettier.'
+  title: 'StockSense for all your inventory needs',
+  description: 'A dashboard and inventory manager for all item management big or small',
+  icons: {
+    icon: '/favicon.ico'
+  },
 };
 
 export default function RootLayout({
@@ -15,8 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen w-full flex-col">{children}</body>
-      <Analytics />
+      <body className="flex min-h-screen w-full flex-col">
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+        <Analytics />
+      </body>
     </html>
   );
 }
